@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import './App.css';
 import 'antd/dist/antd.css';
 import {connect} from 'react-redux';
 import {updateBankBalance,minusBankBalance,plusBankBalance,donateMyCashToCharity} from './bankbalanceAction';
@@ -69,7 +68,7 @@ class App extends Component {
       <Button onClick = {this.onDonateMyCashToCharity} type="primary" ><Icon type="home" /> Donate My Cash To Charity</Button>
     
     ]}
-    >{this.props.bankbalance}
+    >Balance : {this.props.bankbalance}
     </Card>
       
         </div>

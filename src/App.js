@@ -51,13 +51,13 @@ class App extends Component {
       </Header>
       <Content style={{ padding: '0 50px' }}>
         <div style={{ background: '#fff', padding: 24,marginTop:24, minHeight: 280,height:"100vh" }}>
-        <h1>BANK BALAMCE : {this.props.bankbalance}</h1>
+        <h1>BANK BALANCE : {this.props.bankbalance}</h1>
         
         <div>
-        <Button onClick = {this.onUpdateBalance} type="primary">Reset Balance by 10000</Button>
+        {/* <Button onClick = {this.onUpdateBalance} type="primary">Reset Balance by 10000</Button> */}
         <Button onClick = {this.onPlusBankBalance} type="primary"   >+10000</Button>
         <Button onClick = {this.onMinusBankBalance} type="primary" disabled={!this.props.bankbalance} >-10000</Button>
-        <Button onClick = {this.onDonateMyCashToCharity} type="primary" disabled={!this.props.bankbalance}>DonateMyCashToCharity</Button>
+        <Button onClick = {this.onDonateMyCashToCharity} type="primary" >DonateMyCashToCharity</Button>
       
         </div>
         </div>

@@ -10,7 +10,7 @@ import bankbalanceReducer from './bankbalanceReducer';
 const addReducers = combineReducers({
     bankbalance : bankbalanceReducer,
 })
-const store = createStore(addReducers,{bankbalance : 10000});
+const store = createStore(addReducers,{bankbalance : 0});
 
 ReactDOM.render(
 <Provider store={store}>

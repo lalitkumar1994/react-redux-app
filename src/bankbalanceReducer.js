@@ -12,5 +12,4 @@ export default function  bankbalanceReducer (state  = '' ,{type,playload}) {
         default:
             return state;
     }
-    return state;
 }

@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import 'antd/dist/antd.css';
 import {connect} from 'react-redux';
-import {updateBankBalance,minusBankBalance,plusBankBalance,donateMyCashToCharity} from './bankbalanceAction';
+import {minusBankBalance,plusBankBalance,donateMyCashToCharity} from './bankbalanceAction';
 import { Layout, Menu, Button,Card,Icon,message} from 'antd';
-import {
-  List, Avatar, Skeleton,
-} from 'antd';
+
 
 const { Header, Content, Footer } = Layout;
 
@@ -39,7 +37,6 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.props);
     return (
           
       <Layout className="layout" style={{height:"100vh"}}>
@@ -57,19 +54,20 @@ class App extends Component {
       <Content style={{ padding: '0 50px' }}>
         <div style={{ background: '#fff', padding: 24,marginTop:24, minHeight: 280,height:"100vh" }}>
         <Card
-      style={{ marginTop: 16 }}
-      type="inner"
-      title="Bank Balance"
-      extra={[
-      <Button onClick = {this.onPlusBankBalance} type="primary"   ><Icon type="plus" />10000</Button>
-      ,"  ",
-      <Button onClick = {this.onMinusBankBalance} type="primary" disabled={!this.props.bankbalance} ><Icon type="minus" />10000</Button>
-      ,"  ",
-      <Button onClick = {this.onDonateMyCashToCharity} type="primary" ><Icon type="home" /> Donate My Cash To Charity</Button>
-    
-    ]}
-    >Balance : {this.props.bankbalance}
-    </Card>
+            style={{ marginTop: 16 }}
+            type="inner"
+            title="Bank Balance"
+            key="balanceCard"
+            extra={[
+            <Button onClick = {this.onPlusBankBalance} key="plusbal" type="primary"   ><Icon type="plus" />10000</Button>
+            ,"  ",
+            <Button onClick = {this.onMinusBankBalance} key="minusbal" type="primary" disabled={!this.props.bankbalance} ><Icon type="minus" />10000</Button>
+            ,"  ",
+            <Button onClick = {this.onDonateMyCashToCharity} key="donatebal" type="primary" ><Icon type="home" /> Donate My Cash To Charity</Button>
+          
+          ]}
+          >Balance : {this.props.bankbalance}
+        </Card>
       
         </div>
       </Content>

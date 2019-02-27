@@ -1,12 +1,3 @@
-export const UPDATE_BANKBALANACE = 'updateBalance'; 
-export function updateBankBalance(balance){
-    return {
-        type: UPDATE_BANKBALANACE,
-        playload:{
-            balance : balance,
-        }
-    }
-}
 
 export const PLUS_BANKBALANACE = 'plusBankBalance'; 
 export function plusBankBalance(balance){

@@ -3,7 +3,10 @@ import './App.css';
 import 'antd/dist/antd.css';
 import {connect} from 'react-redux';
 import {updateBankBalance,minusBankBalance,plusBankBalance,donateMyCashToCharity} from './bankbalanceAction';
-import { Layout, Menu, Button  } from 'antd';
+import { Layout, Menu, Button,Card,Icon,message} from 'antd';
+import {
+  List, Avatar, Skeleton,
+} from 'antd';
 
 const { Header, Content, Footer } = Layout;
 
@@ -11,14 +14,9 @@ const { Header, Content, Footer } = Layout;
 class App extends Component {
   constructor(props){
     super(props);
-    this.onUpdateBalance = this.onUpdateBalance.bind(this);
     this.onPlusBankBalance = this.onPlusBankBalance.bind(this);
     this.onMinusBankBalance = this.onMinusBankBalance.bind(this);
     this.onDonateMyCashToCharity = this.onDonateMyCashToCharity.bind(this);
-  }
-
-  onUpdateBalance(){
-    this.props.onUpdateBalance(10000);
   }
 
   onPlusBankBalance(){
@@ -30,7 +28,15 @@ class App extends Component {
   }
 
   onDonateMyCashToCharity(){
-    this.props.onDonateMyCashToCharity(0);
+    if(this.props.bankbalance){
+      const msg = "Thank you for donation of "+this.props.bankbalance;
+      message.success(msg);
+      this.props.onDonateMyCashToCharity(0);
+    }else{
+      const msg = "You don't have enough bank balance for donation";
+      message.info(msg);
+      
+    }
   }
 
   render() {
@@ -46,20 +52,26 @@ class App extends Component {
           defaultSelectedKeys={['2']}
           style={{ lineHeight: '64px' }}
         >
-          <Menu.Item key="1">ACUMENTS</Menu.Item>
+          <Menu.Item key="1">ACUMENTS BANK</Menu.Item>
         </Menu>
       </Header>
       <Content style={{ padding: '0 50px' }}>
         <div style={{ background: '#fff', padding: 24,marginTop:24, minHeight: 280,height:"100vh" }}>
-        <h1>BANK BALANCE : {this.props.bankbalance}</h1>
-        
-        <div>
-        {/* <Button onClick = {this.onUpdateBalance} type="primary">Reset Balance by 10000</Button> */}
-        <Button onClick = {this.onPlusBankBalance} type="primary"   >+10000</Button>
-        <Button onClick = {this.onMinusBankBalance} type="primary" disabled={!this.props.bankbalance} >-10000</Button>
-        <Button onClick = {this.onDonateMyCashToCharity} type="primary" >DonateMyCashToCharity</Button>
+        <Card
+      style={{ marginTop: 16 }}
+      type="inner"
+      title="Bank Balance"
+      extra={[
+      <Button onClick = {this.onPlusBankBalance} type="primary"   ><Icon type="plus" />10000</Button>
+      ,"  ",
+      <Button onClick = {this.onMinusBankBalance} type="primary" disabled={!this.props.bankbalance} ><Icon type="minus" />10000</Button>
+      ,"  ",
+      <Button onClick = {this.onDonateMyCashToCharity} type="primary" ><Icon type="home" /> Donate My Cash To Charity</Button>
+    
+    ]}
+    >{this.props.bankbalance}
+    </Card>
       
-        </div>
         </div>
       </Content>
       <Footer style={{ textAlign: 'center' }}>
@@ -77,7 +89,6 @@ const mapStateToProps = state =>({
 });
 
 const mapActionToProps = {
-  onUpdateBalance : updateBankBalance,
   onPlusBankBalance : plusBankBalance,
   onMinusBankBalance : minusBankBalance,
   onDonateMyCashToCharity : donateMyCashToCharity

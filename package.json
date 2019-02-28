@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "antd": "^3.13.6",
+    "esm": "^3.2.7",
     "react": "^16.8.3",
     "react-dom": "^16.8.3",
     "react-redux": "^6.0.1",
@@ -14,7 +15,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "mocha -r esm || exit 0",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -25,5 +26,9 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^6.0.2"
+  }
 }

@@ -2,7 +2,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Installation
 
-In the project directory, you can run:
+Installing and running this App is very simple. Clone this repo, and then simply run in App directory:
 
 ### `npm install`
 
